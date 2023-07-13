@@ -1,5 +1,6 @@
 const {Dex} = require('pokemon-showdown');
-const weaknessChart = require('./weaknessChart')
+const weaknessChart = require('./weaknessChart');
+const pokemon = require('pokemon-showdown/dist/sim/pokemon');
 // console.log(weaknessChart)
 // const tackle = Dex.moves.get('Tackle');
 
@@ -17,11 +18,11 @@ const kevinTeam = ['Zamazenta', 'Enamorous', 'Roaring Moon', 'Ursaluna', 'Mew', 
 
 const zackTeam = ['Iron Moth', 'Meowscarada', 'Garchomp', 'Rotom-W', 'Clodsire', 'Scizor', 'Diancie', 'Blissey', 'Pawmot'];
 
-const andrewTeam = ['Kingambit', 'Baxcalibur', 'Glimmora', 'Azumarill', 'Zoroark-Hisuiisui', 'Moltres', 'Azelf', 'Thundurus-Therianherian', 'Grimmsnarl'];
+const andrewTeam = ['Kingambit', 'Baxcalibur', 'Glimmora', 'Azumarill', 'Zoroark-Hisui', 'Moltres', 'Azelf', 'Thundurus-Therian', 'Grimmsnarl'];
 
-const alexTeam = ['Iron Valiant', 'Iron Treads', 'Hydreigon', 'Greninja', 'Skeledirge', 'Slowking', 'Gengar', 'Salamence', 'Rotom-Mow'];
+const alexTeam = ['Iron Valiant', 'Iron Treads', 'Hydreigon', 'Greninja', 'Skeledirge', 'Slowking-Galar', 'Gengar', 'Salamence', 'Rotom-Mow'];
 
-const georgeTeam = ['Sneasler', 'Hisuian Samurott', 'Tornadus-Therian', 'Heatran', 'Enamorus-Therian', 'Amoongus', 'Indeedee-F', 'Cresselia', 'Polteageist'];
+const georgeTeam = ['Sneasler', 'Samurott-Hisui', 'Tornadus-Therian', 'Heatran', 'Enamorus-Therian', 'Amoonguss', 'Indeedee-F', 'Cresselia', 'Polteageist'];
 
 
 const createTeamObjArr = (team) => {
@@ -57,112 +58,8 @@ const printStats = (team, whoseTeam = 'mine', chosenStat = 'hp') => {
 }
 
 
-const monAdvantage = (theirTeam) => {
-
-}
-
-const weaknessAndStabs = mon => {
-    //make weak array, a strong array, and an immunities array
-    const weaknesses = []
-    const resists = []
-    const immunities = []
-    const supereffective = []
-
-    //look at mon's typing 
-    //for each type
-        //spread immunities to the immunities array
-        //spread strengths to strengths 
-        //
-        //if monotype, just retu
-    //for each type
-        //go through weakness and add it to an array
-}
 
 
-// function weaknessAndStrengths(types) {
-
-//     let tempWeaknesses = {};
-//     let tempDoubleWeaknesses = {};
-//     let tempResistances = {};
-//     let tempDoubleResistances = {};
-  
-//     const result = {
-//       weaknesses: {},
-//       doubleWeaknesses: {},
-//       resistances: {},
-//       doubleResistances: {},
-//       immunities: {},
-//       superEffectiveSTAB: {},
-//     };
-  
-//     types.forEach((type) => {
-//       const typeChart = weaknessChart[type];
-  
-//       Object.entries(typeChart).forEach(([key, value]) => {
-  
-//         if (value === 0) {
-//           result.immunities[key] = true;
-//           delete tempWeaknesses[key];
-//           delete tempDoubleWeaknesses[key];
-//           return;
-//         }
-  
-//         if (value === 2) {
-//           if (tempWeaknesses[key]) {
-//             tempDoubleWeaknesses[key] = true;
-//             delete tempWeaknesses[key];
-//           } else if (!tempDoubleWeaknesses[key]) {
-//             tempWeaknesses[key] = true;
-//           }
-//         } else if (value === 0.5) {
-//           if (tempResistances[key]) {
-//             tempDoubleResistances[key] = true;
-//             delete tempResistances[key];
-//           } else if (!tempDoubleResistances[key]) {
-//             tempResistances[key] = true;
-//           }
-//         }
-  
-//       });
-//     });
-  
-//     Object.keys(tempWeaknesses).forEach((type) => {
-//       if (!result.immunities[type] && !tempResistances[type]) {
-//         result.weaknesses[type] = true;
-//       }
-//     });
-  
-//     Object.keys(tempDoubleWeaknesses).forEach((type) => {
-//       if (!result.immunities[type] && !tempDoubleResistances[type]) {
-//         result.doubleWeaknesses[type] = true;
-//       }
-//     });
-  
-//     Object.keys(tempResistances).forEach((type) => {
-//       if (!result.weaknesses[type] && !result.doubleWeaknesses[type]) {
-//         result.resistances[type] = true;
-//       }
-//     });
-  
-//     Object.keys(tempDoubleResistances).forEach((type) => {
-//       if (!result.weaknesses[type] && !result.doubleWeaknesses[type]) {
-//         result.doubleResistances[type] = true;
-//       }
-//     });
-  
-//     // Calculate superEffectiveSTAB
-//     Object.keys(weaknessChart).forEach((type) => {
-//       types.forEach((pokemonType) => {
-//         if (weaknessChart[type][pokemonType] === 2) {
-//           result.superEffectiveSTAB[pokemonType] = result.superEffectiveSTAB[pokemonType] || [];
-//           result.superEffectiveSTAB[pokemonType].push(type);
-//         }
-//       });
-//     });
-  
-//     return result;
-//   }
-  
 
 function weaknessAndStrengths(types) {
 
@@ -242,18 +139,7 @@ function weaknessAndStrengths(types) {
     result.immunities = Object.keys(result.immunities)
     return result;
   }
-  
-//   console.log(weaknessAndStrengths(['Ground', 'Flying']))
-//   console.log(weaknessAndStrengths(['Ground', 'Flying']))
-//   console.log(weaknessAndStrengths(['Ground', 'Flying']))
-//   
-//   console.log(weaknessAndStrengths(['Ground', 'Flying']))
-  
-//   console.log(weaknessAndStrengths(['Ground', 'Flying']));
-// printStats(myTeam, 'mine', 'spa')
-// printStats(oppTeam, 'theirs', 'spa')
 
-// compareTeams()
 
 const findSwitchIn = (oppMon, team) => {
     // console.log(oppMon)
@@ -264,6 +150,7 @@ const findSwitchIn = (oppMon, team) => {
     const oppMonTypeUse = weaknessAndStrengths(oppMon.types)
     // console.log(oppMonTyping)
     team.forEach(mon => {
+      // console.log(mon.name)
         //for each of their types
         // console.log(mon.types)
         mon.types.forEach(monType => {
@@ -301,69 +188,130 @@ const findSwitchIn = (oppMon, team) => {
 }
 
 
-//switch in is defined as a pokemon who generally
-  //shares at least one typing with the opponent's weakness
+const analyzeResistances = (team) => {
+  // Create a mapping of type resistances and immunities for each Pokemon
+  const resistances = {};
+  team.forEach(pokemon => {
+      const pokemonResistances = [...weaknessAndStrengths(pokemon.types).resistances, ...weaknessAndStrengths(pokemon.types).doubleResistances, ...weaknessAndStrengths(pokemon.types).immunities];
+      pokemonResistances.forEach(resistance => {
+          if (!resistances[resistance]) {
+              resistances[resistance] = [];
+          }
+          resistances[resistance].push(pokemon.name);
+      });
+  });
 
-// const compareTeams = (myTeam, theirTeam) => {
-//     //make objs of both teams
-//     myTeam = createTeamObjArr(myTeam)
-//     theirTeam = createTeamObjArr(theirTeam)
+  // Create the totalResistances table
+  const totalResistances = Object.entries(resistances).map(([type, pokemons]) => {
+      return {
+          type,
+          number : pokemons.length,
+          pokemons: pokemons.join(', ')
+      };
+  });
+  totalResistances.sort((a, b) => b.number - a.number);
 
-//     //MY TEAM BOTH
-//     console.log("team analysis")
-//     myTeam.forEach(mon => {
-//         console.log(mon.name)
-//         console.log("blasted by:")
-//         // console.log(mon.name)
-//         console.log(findSwitchIn(mon, theirTeam))
+  console.log("Total Resistances:");
+  console.table(totalResistances);
+};
 
-//         console.log("blasts:")
-//         const blasts = []
-//         theirTeam.forEach(theirMon => {
-//             if (findSwitchIn(theirMon, [mon]).length > 0) {
-//                 blasts.push(theirMon.name)
-//             }
-//             // console.log(theirMon.name)
-//             // console.log(findSwitchIn(theirMon, [mon]))
-//         })
-//         console.log(blasts, '\n\n')
+const analyzeWeaknesses = (team) => {
+  // Create a mapping of type weaknesses for each Pokemon
+  const weaknesses = {};
+  team.forEach(pokemon => {
+      // console.log(weaknessAndStrengths(pokemon.types))
+      const pokemonWeaknesses = [...weaknessAndStrengths(pokemon.types).weaknesses, ...weaknessAndStrengths(pokemon.types).doubleWeaknesses];
+      // console.log(pokemonWeaknesses)
+      pokemonWeaknesses.forEach(weakness => {
+          if (!weaknesses[weakness]) {
+              weaknesses[weakness] = [];
+          }
+          weaknesses[weakness].push(pokemon.name);
+      });
+  });
 
-//         //
-//     })
+  // Create the totalWeaknesses table
+  const totalWeaknesses = Object.entries(weaknesses).map(([type, pokemons]) => {
+      return {
+          type,
+          number : pokemons.length,
+          pokemons: pokemons.join(', ')
+      };
+  });
+  totalWeaknesses.sort((a, b) => b.number - a.number);
 
-//     //THEIR TEAM BOTH 
+  console.log("Total Weaknesses:");
+  console.table(totalWeaknesses);
+};
 
-//     theirTeam.forEach(mon => {
-//         console.log(mon.name)
-//         console.log("blasted by:")
-//         // console.log(mon.name)
-//         console.log(findSwitchIn(mon, myTeam))
 
-//         console.log("blasts:")
-//         const blasts = []
-//         myTeam.forEach(myMon => {
-//             if (findSwitchIn(myMon, [mon]).length > 0) {
-//                 blasts.push(myMon.name)
-//             }
-//             // console.log(theirMon.name)
-//             // console.log(findSwitchIn(theirMon, [mon]))
-//         })
-//         console.log(blasts, '\n\n')
+const analyzeSTABs = (team) => {
+  // Create a mapping of type weaknesses for each Pokemon
+  const weaknesses = {};
+  team.forEach(pokemon => {
+      console.log(weaknessAndStrengths(pokemon.types))
+      // const pokemonWeaknesses = [...weaknessAndStrengths(pokemon.types).weaknesses, ...weaknessAndStrengths(pokemon.types).doubleWeaknesses];
+      // // console.log(pokemonWeaknesses)
+      // pokemonWeaknesses.forEach(weakness => {
+      //     if (!weaknesses[weakness]) {
+      //         weaknesses[weakness] = [];
+      //     }
+      //     weaknesses[weakness].push(pokemon.name);
+      // });
+  });
 
-//         //
-//     })
-// }
+  // Create the totalWeaknesses table
+  // const totalWeaknesses = Object.entries(weaknesses).map(([type, pokemons]) => {
+  //     return {
+  //         type,
+  //         number : pokemons.length,
+  //         pokemons: pokemons.join(', ')
+  //     };
+  // });
+  // totalWeaknesses.sort((a, b) => b.number - a.number);
+
+  // console.log("Total Weaknesses:");
+  // console.table(totalWeaknesses);
+};
+
+
 
 const compareTeams = (myTeam, theirTeam) => {
-    myTeam = createTeamObjArr(myTeam);
-    theirTeam = createTeamObjArr(theirTeam);
+  myTeam = createTeamObjArr(myTeam);
+  theirTeam = createTeamObjArr(theirTeam);
 
-    console.log("team analysis");
+  console.log("team analysis");
 
-    const analyzeTeam = (team1, team2, action1, action2) => {
+  console.log("Team 1:")
+  analyzeTeam(myTeam, theirTeam, 'walled by', 'switches into');
+  analyzeWeaknesses(myTeam); // analyze weaknesses for team 1
+  analyzeResistances(myTeam)
+  // analyzeSTABs(myTeam)
+
+  console.log("\n\n Team 2")
+  analyzeTeam(theirTeam, myTeam, 'walled by', 'switches into');
+  analyzeWeaknesses(theirTeam); // analyze weaknesses for team 2
+  analyzeResistances(theirTeam)
+};
+
+const analyzeTeam = (team1, team2, action1, action2) => {
         team1.forEach(mon => {
+          // console.log(mon.name)
             const blastedBy = findSwitchIn(mon, team2);
             const blasts = team2.filter(theirMon => findSwitchIn(theirMon, [mon]).length > 0).map(theirMon => theirMon.name);
+            
+            // Create a mapping of type weaknesses for each Pokemon
+            const weaknesses = {};
+            team2.forEach(pokemon => {
+                const pokemonWeaknesses = weaknessAndStrengths(pokemon.types).weaknesses;
+                pokemonWeaknesses.forEach(weakness => {
+                    if (!weaknesses[weakness]) {
+                        weaknesses[weakness] = [];
+                    }
+                    weaknesses[weakness].push(pokemon.name);
+                });
+            });
+            
             const table = [{Action: 'Self', 'Pokemon': mon.name, ...mon.baseStats}].concat(
                 blastedBy.map((name, index) => {
                     const pokemon = team2.find(p => p.name === name);
@@ -372,31 +320,49 @@ const compareTeams = (myTeam, theirTeam) => {
                 blasts.map(name => {
                     const pokemon = team2.find(p => p.name === name);
                     return {Action: action2, 'Pokemon': name, ...pokemon.baseStats};
-                })
+                }),
             );
             console.log(mon.name);
             console.table(table);
         });
     };
-    console.log("Team 1:")
-    analyzeTeam(myTeam, theirTeam, 'blasted by', 'blasts');
-    console.log("\n\n Team 2")
-    analyzeTeam(theirTeam, myTeam, 'blasted by', 'blasts');
+
+
+
+const readline = require('readline');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+const teams = {
+  'kirk': kirkTeam,
+  'morry': morryTeam,
+  'sean': seanTeam,
+  'mason': masonTeam,
+  'matt': mattTeam,
+  'kevin': kevinTeam,
+  'zack': zackTeam,
+  'andrew': andrewTeam,
+  'alex': alexTeam,
+  'george': georgeTeam
 };
 
 
-const slowbro = Dex.species.get('slowbro')
-const dragapult = Dex.species.get('dragapult')
-// console.log(slowbro); // prints 40
-// console.log(weaknessAndStrengths(['Ground', 'Flying']))
-// console.log(weaknessAndStrengths(['Fire', 'Water']))
+console.log(Dex.moves.get('Stealth Rock'))
 
-// console.log("finding switch ins")
-// console.log(findSwitchIn(slowbro, theirTeamObjArr))
-// console.log(findSwitchIn(dragapult, myTeamObjArr))
-// console.log(slowbro)
+rl.question('Enter the first team name: ', (firstTeamName) => {
+  rl.question('Enter the second team name: ', (secondTeamName) => {
+    const firstTeam = teams[firstTeamName.toLowerCase()];
+    const secondTeam = teams[secondTeamName.toLowerCase()];
 
-// compareTeams(myTeam, oppTeam)
+    if (!firstTeam || !secondTeam) {
+      console.log('One or both team names are invalid. Please try again.');
+    } else {
+      compareTeams(firstTeam, secondTeam);
+    }
 
-compareTeams(masonTeam, zackTeam)
-compareTeams(kirkTeam, seanTeam)
+    rl.close();
+  });
+});
